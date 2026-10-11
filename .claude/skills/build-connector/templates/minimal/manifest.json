@@ -1,0 +1,39 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "minimal-starter",
+  "title": "Minimal starter",
+  "version": "0.1.0",
+  "description": "A starting point: one tool, one resource and one prompt, with no network.",
+  "tools": [
+    {
+      "name": "greet",
+      "title": "Greet",
+      "description": "Greet someone by name",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "name": { "type": "string", "description": "Who to greet" } },
+        "required": ["name"],
+        "additionalProperties": false
+      },
+      "annotations": { "readOnlyHint": true, "idempotentHint": true, "openWorldHint": false }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "minimal-starter://readme",
+      "name": "readme",
+      "title": "About this connector",
+      "mimeType": "text/plain"
+    }
+  ],
+  "prompts": [
+    {
+      "name": "welcome",
+      "title": "Welcome",
+      "description": "Ask the assistant to welcome someone",
+      "arguments": [{ "name": "name", "description": "Who to welcome", "required": true }]
+    }
+  ]
+}

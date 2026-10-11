@@ -1,0 +1,86 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "oauth2-starter",
+  "title": "OAuth 2.0 starter (Gmail)",
+  "version": "0.1.0",
+  "description": "A starting point for a REST API with an OAuth 2.0 sign-in, shaped like Gmail: read threads and draft messages.",
+  "websiteUrl": "https://developers.google.com/gmail/api",
+  "tools": [
+    {
+      "name": "listThreads",
+      "title": "List threads",
+      "description": "List the newest email threads, optionally matching a Gmail search such as \"is:unread from:ada\"",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": { "type": "string", "description": "A Gmail search query" },
+          "maxResults": { "type": "integer", "minimum": 1, "maximum": 100, "description": "How many threads" }
+        },
+        "additionalProperties": false
+      },
+      "annotations": { "readOnlyHint": true, "idempotentHint": true, "openWorldHint": true }
+    },
+    {
+      "name": "getThread",
+      "title": "Get a thread",
+      "description": "Every message of one thread, with headers and bodies",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "id": { "type": "string", "description": "The thread id, from listThreads" } },
+        "required": ["id"],
+        "additionalProperties": false
+      },
+      "annotations": { "readOnlyHint": true, "idempotentHint": true, "openWorldHint": true }
+    },
+    {
+      "name": "createDraft",
+      "title": "Draft a message",
+      "description": "Save a plain-text draft; nothing is sent",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "to": { "type": "string", "description": "The recipient's address" },
+          "subject": { "type": "string" },
+          "body": { "type": "string", "description": "Plain text" },
+          "threadId": { "type": "string", "description": "Reply in this thread" }
+        },
+        "required": ["to", "subject", "body"],
+        "additionalProperties": false
+      },
+      "annotations": { "readOnlyHint": false, "destructiveHint": false, "openWorldHint": true }
+    }
+  ],
+  "auth": {
+    "required": true,
+    "schemes": [
+      {
+        "type": "oauth2",
+        "grants": ["authorization_code"],
+        "authorizationUrl": "https://accounts.google.com/o/oauth2/v2/auth",
+        "tokenUrl": "https://oauth2.googleapis.com/token",
+        "scopes": [
+          "https://www.googleapis.com/auth/gmail.readonly",
+          "https://www.googleapis.com/auth/gmail.compose"
+        ],
+        "pkce": true,
+        "clientSecretRequired": true,
+        "extraAuthParams": { "access_type": "offline", "prompt": "select_account consent" }
+      }
+    ]
+  },
+  "inputs": [
+    {
+      "name": "api_base",
+      "title": "API base URL",
+      "description": "Where the API is; it must be allowed below",
+      "type": "string",
+      "default": "https://gmail.googleapis.com"
+    }
+  ],
+  "permissions": {
+    "http": { "allow": ["https://gmail.googleapis.com"] }
+  },
+  "limits": { "timeoutMs": 20000 }
+}

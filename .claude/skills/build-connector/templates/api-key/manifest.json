@@ -1,0 +1,68 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "api-key-starter",
+  "title": "API key starter",
+  "version": "0.1.0",
+  "description": "A starting point for a REST API with a key the host injects as a header.",
+  "tools": [
+    {
+      "name": "listItems",
+      "title": "List items",
+      "description": "List items, newest first",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": { "type": "integer", "minimum": 1, "maximum": 100, "description": "How many to return" }
+        },
+        "additionalProperties": false
+      },
+      "annotations": { "readOnlyHint": true, "idempotentHint": true, "openWorldHint": true }
+    },
+    {
+      "name": "getItem",
+      "title": "Get an item",
+      "description": "One item by its id",
+      "inputSchema": {
+        "type": "object",
+        "properties": { "id": { "type": "string", "description": "The item's id" } },
+        "required": ["id"],
+        "additionalProperties": false
+      },
+      "annotations": { "readOnlyHint": true, "idempotentHint": true, "openWorldHint": true }
+    },
+    {
+      "name": "createItem",
+      "title": "Create an item",
+      "description": "Create an item and return it",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string", "minLength": 1, "description": "Its title" },
+          "notes": { "type": "string", "description": "Optional notes" }
+        },
+        "required": ["title"],
+        "additionalProperties": false
+      },
+      "annotations": { "readOnlyHint": false, "destructiveHint": false, "openWorldHint": true }
+    }
+  ],
+  "auth": {
+    "required": true,
+    "schemes": [{ "type": "header", "name": "X-Api-Key" }]
+  },
+  "inputs": [
+    {
+      "name": "base_url",
+      "title": "Base URL",
+      "description": "Where the API runs; it must be allowed below",
+      "type": "string",
+      "default": "https://api.example.com"
+    }
+  ],
+  "permissions": {
+    "http": { "allow": ["https://api.example.com"] }
+  },
+  "limits": { "timeoutMs": 20000 }
+}

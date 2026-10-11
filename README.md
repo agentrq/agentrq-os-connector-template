@@ -17,6 +17,8 @@ every push and pull request.
 │   ├── Cargo.toml
 │   └── src/lib.rs             # example implementation + tests
 ├── scripts/lint.mjs           # the listing-rules linter (dependency-free)
+├── .claude/skills/build-connector/  # the connector builder skill (from agentrq/connectors):
+│   │                          # scaffolding, SDK reference, checklists and templates
 └── .github/workflows/
     ├── lint.yml               # connector lint, on push and PR
     └── test.yml               # fmt, clippy, tests, 100% coverage
@@ -37,6 +39,17 @@ every push and pull request.
 4. Push. The `connector lint` and `tests` workflows must both be green.
 5. Add the [`agentrq-connector`](https://github.com/topics/agentrq-connector)
    topic to the repository so the public catalogue discovers it.
+
+## Building the connector
+
+The [build-connector skill](.claude/skills/build-connector/SKILL.md) — copied
+from `agentrq/connectors` — is bundled with this template and is picked up
+automatically by Claude Code. It walks through planning the tool surface,
+scaffolding the crate from the `minimal`, `api-key` or `oauth2` templates,
+implementing tools against `connectors-sdk`, and testing on the host before
+building the `.wasm`. The skill's checklists encode the same quality bar the
+workflows enforce: `icons` and `instructions` in every manifest, `cargo fmt`
+clean, clippy with zero warnings, and 100% line and function coverage.
 
 ## Adding another connector
 
