@@ -51,6 +51,17 @@ building the `.wasm`. The skill's checklists encode the same quality bar the
 workflows enforce: `icons` and `instructions` in every manifest, `cargo fmt`
 clean, clippy with zero warnings, and 100% line and function coverage.
 
+## Reference docs
+
+Copies from `agentrq/connectors`, kept alongside the skill:
+
+- [docs/authoring.md](docs/authoring.md) — writing a connector end to end:
+  scaffolding, tools, auth, building the `.wasm`, installing and testing.
+- [docs/manifest.md](docs/manifest.md) — the complete `manifest.json` field
+  reference.
+- [docs/mcp-compat.md](docs/mcp-compat.md) — which MCP revisions the host
+  serves and how.
+
 ## Adding another connector
 
 1. Copy `my-connector/` to a new folder, e.g. `my-other-connector/`, and edit
