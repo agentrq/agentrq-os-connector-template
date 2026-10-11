@@ -1,1 +1,27 @@
-{"$schema":"https://connectors.agentrq.com/schemas/connectors-manifest/v1.json","connectors":[{"manifest":"my-connector/manifest.json"}],"manifestVersion":1}
+{
+  "$schema": "https://connectors.agentrq.com/schemas/connectors-manifest/v1.json",
+  "manifestVersion": 1,
+  "connectors": [
+    {
+      "manifest": "my-connector/manifest.json"
+    },
+    {
+      "manifest": "example-oauth2/manifest.json"
+    },
+    {
+      "manifest": "example-http/manifest.json"
+    },
+    {
+      "manifest": "example-fs/manifest.json"
+    },
+    {
+      "manifest": "example-resources/manifest.json"
+    },
+    {
+      "manifest": "example-prompts/manifest.json"
+    },
+    {
+      "manifest": "example-workflow/manifest.json"
+    }
+  ]
+}

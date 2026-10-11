@@ -11,17 +11,26 @@ every push and pull request.
 ```
 .
 ├── connectors-manifest.json   # the index: every connector this repo publishes
-├── my-connector/
+├── my-connector/              # the starter connector (rename me)
 │   ├── manifest.json          # the connector's listing (icons + instructions required)
 │   ├── icon.svg               # the connector's icon
 │   ├── Cargo.toml
 │   └── src/lib.rs             # example implementation + tests
+├── example-oauth2/            # OAuth 2.0 sign-in (authorization code + PKCE)
+├── example-http/              # outbound HTTP with a stored API key
+├── example-fs/                # filesystem access (/data)
+├── example-resources/         # MCP resources + resource templates
+├── example-prompts/           # MCP prompts with arguments
+├── example-workflow/          # workflow connector (steps, ok/err paths)
 ├── scripts/lint.mjs           # the listing-rules linter (dependency-free)
-├── .claude/skills/              # skills, auto-discovered by Claude Code:
+├── skills/                    # skills in the Agent Skills open standard:
 │   ├── build-connector/         # scaffold, build, test and publish a connector
 │   ├── connector-authoring/     # end-to-end authoring guide
 │   ├── connector-manifest/      # complete manifest.json reference
 │   └── mcp-compatibility/       # MCP revisions and pinned host behaviors
+├── .claude-plugin/            # Claude Code plugin manifest + marketplace
+├── .cursor-plugin/            # Cursor plugin manifest
+├── .codex-plugin/             # Codex plugin manifest
 └── .github/workflows/
     ├── lint.yml               # connector lint, on push and PR
     └── test.yml               # fmt, clippy, tests, 100% coverage
@@ -45,8 +54,11 @@ every push and pull request.
 
 ## Building the connector
 
-This template bundles four skills from `agentrq/connectors`, picked up
-automatically by Claude Code:
+This template bundles four skills from `agentrq/connectors`, in the
+[Agent Skills](https://agentskills.io/specification) open standard so every
+major coding agent can use them. The skills live in `skills/` at the repo
+root; thin plugin manifests wire them into specific harnesses
+(`.claude-plugin`, `.cursor-plugin`, `.codex-plugin`).
 
 - **`build-connector`** — plan the tool surface, scaffold the crate from the
   `minimal`, `api-key` or `oauth2` templates, implement tools against
@@ -62,6 +74,28 @@ automatically by Claude Code:
 The skills' checklists encode the same quality bar the workflows enforce:
 `icons` and `instructions` in every manifest, `cargo fmt` clean, clippy with
 zero warnings, and 100% line and function coverage.
+
+## Examples
+
+Beyond the `my-connector` starter, the repo ships six focused examples. Each
+is a complete, listing-valid connector you can copy as a starting point:
+
+- **`example-oauth2`** — OAuth 2.0 sign-in (`authorization_code` + PKCE). The
+  `auth` block lives in the manifest; the host runs the flow and injects the
+  token, so the code just calls the API.
+- **`example-http`** — outbound HTTP with a stored API key (`secret` input,
+  injected as a header by the host). Shows the injected-client pattern for
+  testable HTTP code.
+- **`example-fs`** — filesystem access (`fs: readwrite` permission, seen as
+  `/data`). Tools take a note *name*, never a raw path.
+- **`example-resources`** — MCP resources: a static resource plus a resource
+  template with a URI parameter.
+- **`example-prompts`** — MCP prompts with declared arguments, rendered into
+  messages.
+- **`example-workflow`** — a workflow connector: no tools, just a `workflow`
+  block of steps with `ok`/`err` paths the host runs in order.
+
+All seven crates are dependency-free and covered at 100% lines and functions.
 
 ## Adding another connector
 

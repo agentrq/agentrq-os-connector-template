@@ -1,0 +1,74 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "description": "Example workflow connector: logic the host runs step by step, with ok and error paths.",
+  "icons": [
+    {
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ],
+      "src": "https://raw.githubusercontent.com/<owner>/<repo>/main/example-workflow/icon.svg"
+    }
+  ],
+  "instructions": "Copy this folder to start a workflow connector: logic the host runs step by step, with no tools of its own. The start step receives the run input; each step names the steps its ok path and its error path may lead to. Every ok/err target must name a declared step and every step must be reachable from start. Use retries on steps that call out to flaky operations.",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "example-workflow",
+  "title": "Example: Workflow",
+  "version": "0.1.0",
+  "websiteUrl": "https://example.com/docs",
+  "workflow": {
+    "input": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "description": "The status code to fetch.",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "type": "object"
+    },
+    "start": "fetch_status",
+    "steps": [
+      {
+        "description": "Fetch the requested status.",
+        "err": [
+          "report_error"
+        ],
+        "name": "fetch_status",
+        "ok": [
+          "summarize"
+        ],
+        "retries": 2,
+        "title": "Fetch status"
+      },
+      {
+        "description": "Summarize the fetched result.",
+        "err": [
+          "report_error"
+        ],
+        "name": "summarize",
+        "ok": [
+          "done"
+        ],
+        "title": "Summarize"
+      },
+      {
+        "description": "Report a failed run.",
+        "name": "report_error",
+        "ok": [
+          "done"
+        ],
+        "title": "Report error"
+      },
+      {
+        "description": "Terminal step.",
+        "name": "done",
+        "title": "Done"
+      }
+    ]
+  }
+}

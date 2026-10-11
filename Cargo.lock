@@ -3,5 +3,29 @@
 version = 3
 
 [[package]]
+name = "example-fs"
+version = "0.1.0"
+
+[[package]]
+name = "example-http"
+version = "0.1.0"
+
+[[package]]
+name = "example-oauth2"
+version = "0.1.0"
+
+[[package]]
+name = "example-prompts"
+version = "0.1.0"
+
+[[package]]
+name = "example-resources"
+version = "0.1.0"
+
+[[package]]
+name = "example-workflow"
+version = "0.1.0"
+
+[[package]]
 name = "my-connector"
 version = "0.1.0"

@@ -1,0 +1,12 @@
+[package]
+name = "example-workflow"
+version = "0.1.0"
+edition = "2021"
+description = "Example AgentRQ connector: workflow type."
+license = "Apache-2.0"
+repository = "https://github.com/agentrq/agentrq-os-connector-template"
+rust-version = "1.80"
+
+[lib]
+name = "example_workflow"
+path = "src/lib.rs"

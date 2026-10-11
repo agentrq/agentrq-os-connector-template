@@ -1,0 +1,69 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "description": "Example connector showing MCP prompts: reusable prompt templates with arguments.",
+  "icons": [
+    {
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ],
+      "src": "https://raw.githubusercontent.com/<owner>/<repo>/main/example-prompts/icon.svg"
+    }
+  ],
+  "instructions": "Copy this folder to start a connector that ships reusable prompts. Each prompt declares its arguments; required arguments must be supplied when the prompt is fetched. The connector renders a prompt into messages; keep prompts focused on one task and name arguments plainly.",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "example-prompts",
+  "prompts": [
+    {
+      "arguments": [
+        {
+          "description": "The text to summarize.",
+          "name": "text",
+          "required": true,
+          "title": "Text"
+        },
+        {
+          "description": "Summary style, e.g. concise or detailed.",
+          "name": "style",
+          "title": "Style"
+        }
+      ],
+      "description": "Summarize a piece of text in a chosen style.",
+      "name": "summarize",
+      "title": "Summarize text"
+    }
+  ],
+  "title": "Example: Prompts",
+  "tools": [
+    {
+      "description": "Render a prompt into messages.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The prompt name.",
+            "type": "string"
+          },
+          "style": {
+            "description": "The style argument.",
+            "type": "string"
+          },
+          "text": {
+            "description": "The text argument.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "text"
+        ],
+        "type": "object"
+      },
+      "name": "renderPrompt",
+      "title": "Render prompt"
+    }
+  ],
+  "version": "0.1.0",
+  "websiteUrl": "https://example.com/docs"
+}

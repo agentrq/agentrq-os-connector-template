@@ -1,3 +1,11 @@
 [workspace]
-members = ["my-connector"]
 resolver = "2"
+members = [
+    "my-connector",
+    "example-oauth2",
+    "example-http",
+    "example-fs",
+    "example-resources",
+    "example-prompts",
+    "example-workflow",
+]

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "description": "Example connector showing MCP resources: a static config resource and a per-note resource template.",
+  "icons": [
+    {
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ],
+      "src": "https://raw.githubusercontent.com/<owner>/<repo>/main/example-resources/icon.svg"
+    }
+  ],
+  "instructions": "Copy this folder to start a connector that exposes resources: static ones listed in resources and parameterized ones in resourceTemplates. Resource URIs use the example:/// scheme; replace it with your own scheme. The getResource tool reads any declared URI, so agents can fetch configuration or documents without a tool call per item.",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "example-resources",
+  "resourceTemplates": [
+    {
+      "description": "A single note by id.",
+      "mimeType": "text/markdown",
+      "name": "note",
+      "title": "Note",
+      "uriTemplate": "example:///notes/{note_id}"
+    }
+  ],
+  "resources": [
+    {
+      "description": "The connector's static configuration.",
+      "mimeType": "application/json",
+      "name": "config",
+      "title": "Connector configuration",
+      "uri": "example:///config"
+    }
+  ],
+  "title": "Example: Resources",
+  "tools": [
+    {
+      "description": "Read a resource by URI.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "uri": {
+            "description": "The resource URI.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "uri"
+        ],
+        "type": "object"
+      },
+      "name": "getResource",
+      "title": "Get resource"
+    }
+  ],
+  "version": "0.1.0",
+  "websiteUrl": "https://example.com/docs"
+}

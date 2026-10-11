@@ -1,0 +1,64 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "description": "Example connector showing outbound HTTP with a stored API key injected by the host.",
+  "icons": [
+    {
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ],
+      "src": "https://raw.githubusercontent.com/<owner>/<repo>/main/example-http/icon.svg"
+    }
+  ],
+  "inputs": [
+    {
+      "description": "Base URL of the API, e.g. https://api.example.com.",
+      "name": "api_base",
+      "required": true,
+      "title": "API base URL",
+      "type": "string"
+    },
+    {
+      "description": "Stored by the host and injected as the X-Api-Key header; the connector never sees it.",
+      "name": "api_key",
+      "required": true,
+      "secret": true,
+      "title": "API key",
+      "type": "string"
+    }
+  ],
+  "instructions": "Copy this folder to start a connector that calls an HTTP API with a stored API key. Put the key in the api_key input and the service origin in the HTTP allowlist. The host injects the key as the X-Api-Key header after the request leaves the connector; the code builds the request and parses the response. Keep tools outcome-oriented: one tool per user goal, not one per endpoint.",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "example-http",
+  "permissions": {
+    "http": {
+      "allow": [
+        "https://api.example.com"
+      ]
+    }
+  },
+  "title": "Example: HTTP",
+  "tools": [
+    {
+      "description": "Ask the API for a status code and return its response.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "description": "The status code to request.",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "type": "object"
+      },
+      "name": "getStatus",
+      "title": "Get status"
+    }
+  ],
+  "version": "0.1.0",
+  "websiteUrl": "https://example.com/docs"
+}

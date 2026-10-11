@@ -1,0 +1,65 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "auth": {
+    "required": true,
+    "schemes": [
+      {
+        "authorizationUrl": "https://auth.example.com/oauth/authorize",
+        "grants": [
+          "authorization_code"
+        ],
+        "pkce": true,
+        "scopes": [
+          "https://api.example.com/read"
+        ],
+        "tokenUrl": "https://auth.example.com/oauth/token",
+        "type": "oauth2"
+      }
+    ]
+  },
+  "description": "Example connector showing OAuth 2.0 sign-in: authorization code with PKCE, calling an API on the user's behalf.",
+  "icons": [
+    {
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ],
+      "src": "https://raw.githubusercontent.com/<owner>/<repo>/main/example-oauth2/icon.svg"
+    }
+  ],
+  "inputs": [
+    {
+      "default": "https://api.example.com",
+      "description": "Base URL of the API.",
+      "name": "api_base",
+      "title": "API base URL",
+      "type": "string"
+    }
+  ],
+  "instructions": "Copy this folder to start a connector that calls an API on the user's behalf. Replace the authorization and token URLs, the scopes, and the HTTP allowlist with your service's values. The host performs the OAuth 2.0 sign-in and injects the access token into outgoing requests; the connector code never sees the token, so tools just call the API.",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "example-oauth2",
+  "permissions": {
+    "http": {
+      "allow": [
+        "https://api.example.com"
+      ]
+    }
+  },
+  "title": "Example: OAuth2",
+  "tools": [
+    {
+      "description": "Return the signed-in user's profile.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "type": "object"
+      },
+      "name": "getProfile",
+      "title": "Get profile"
+    }
+  ],
+  "version": "0.1.0",
+  "websiteUrl": "https://example.com/docs"
+}

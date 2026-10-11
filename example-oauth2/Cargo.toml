@@ -1,0 +1,12 @@
+[package]
+name = "example-oauth2"
+version = "0.1.0"
+edition = "2021"
+description = "Example AgentRQ connector: OAuth 2.0 sign-in."
+license = "Apache-2.0"
+repository = "https://github.com/agentrq/agentrq-os-connector-template"
+rust-version = "1.80"
+
+[lib]
+name = "example_oauth2"
+path = "src/lib.rs"

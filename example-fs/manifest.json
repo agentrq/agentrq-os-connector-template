@@ -1,0 +1,68 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "description": "Example connector showing filesystem access: notes stored in the connector's private host directory.",
+  "icons": [
+    {
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ],
+      "src": "https://raw.githubusercontent.com/<owner>/<repo>/main/example-fs/icon.svg"
+    }
+  ],
+  "instructions": "Copy this folder to start a connector that reads and writes files in its private host directory, seen by the connector as /data. The host only offers filesystem access when its operator enabled it, and installs the connector only after the user acknowledges the permission. Tools take a note name, never a raw path; the connector maps names into /data/notes itself.",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "example-fs",
+  "permissions": {
+    "fs": {
+      "access": "readwrite"
+    }
+  },
+  "title": "Example: Files",
+  "tools": [
+    {
+      "description": "Read a note by name.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "description": "The note name.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      },
+      "name": "readNote",
+      "title": "Read note"
+    },
+    {
+      "description": "Write a note by name, creating it if needed.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "description": "The note content.",
+            "type": "string"
+          },
+          "name": {
+            "description": "The note name.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "content"
+        ],
+        "type": "object"
+      },
+      "name": "writeNote",
+      "title": "Write note"
+    }
+  ],
+  "version": "0.1.0",
+  "websiteUrl": "https://example.com/docs"
+}
