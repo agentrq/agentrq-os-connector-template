@@ -1,5 +1,5 @@
 ---
-name: mcp-compat
+name: mcp-compatibility
 description: MCP compatibility of the AgentRQ connectors host: the MCP revisions served (2026-07-28 and 2025-11-25), how a request's revision is chosen, and pinned behaviors. Use when checking what MCP surface a connector can rely on.
 ---
 

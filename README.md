@@ -21,7 +21,7 @@ every push and pull request.
 │   ├── build-connector/         # scaffold, build, test and publish a connector
 │   ├── connector-authoring/     # end-to-end authoring guide
 │   ├── connector-manifest/      # complete manifest.json reference
-│   └── mcp-compat/              # MCP revisions and pinned host behaviors
+│   └── mcp-compatibility/       # MCP revisions and pinned host behaviors
 └── .github/workflows/
     ├── lint.yml               # connector lint, on push and PR
     └── test.yml               # fmt, clippy, tests, 100% coverage
@@ -56,7 +56,7 @@ automatically by Claude Code:
 - **`connector-manifest`** — the complete `manifest.json` field reference,
   including the listing requirements (`icons` and `instructions` are
   mandatory to be listed).
-- **`mcp-compat`** — which MCP revisions the host serves and how a request's
+- **`mcp-compatibility`** — which MCP revisions the host serves and how a request's
   revision is chosen.
 
 The skills' checklists encode the same quality bar the workflows enforce:

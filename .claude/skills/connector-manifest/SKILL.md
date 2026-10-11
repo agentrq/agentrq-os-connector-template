@@ -713,8 +713,7 @@ connector's. The manifest is checked by the same rules as a component's.
 }
 ```
 
-How the host talks to the server is in
-[docs/mcp-compat.md](mcp-compat.md#remote-mcp-servers).
+How the host talks to the server is in the `mcp-compatibility` skill.
 
 ## Several connectors in one repository
 
