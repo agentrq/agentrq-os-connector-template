@@ -1,6 +1,6 @@
 ---
 name: connector-authoring
-description: Write an AgentRQ connector end to end: plan the tool surface, scaffold the Rust crate, implement tools with connectors-sdk, build the wasm32-wasip2 component, install and test it on the host. Use when creating a new connector or working through the full authoring flow.
+description: "Write an AgentRQ connector end to end: plan the tool surface, scaffold the Rust crate, implement tools with connectors-sdk, build the wasm32-wasip2 component, install and test it on the host. Use when creating a new connector or working through the full authoring flow."
 ---
 
 # Writing a connector

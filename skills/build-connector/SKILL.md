@@ -1,6 +1,6 @@
 ---
 name: build-connector
-description: Build an AgentRQ connector, a WebAssembly (wasm32-wasip2) component written in Rust with connectors-sdk that the `connectors` host serves as an MCP server and a CLI app. Use when the user wants to wrap a REST/HTTP API or service (Gmail, a CRM, an internal API…) as a connector or MCP tool for AgentRQ Connectors, scaffold a connector crate, implement its tools, test it on the host, build the .wasm, or install and try it with `connectors install`. Also use to decide between writing a component and installing an existing remote MCP server by URL.
+description: "Build an AgentRQ connector, a WebAssembly (wasm32-wasip2) component written in Rust with connectors-sdk that the `connectors` host serves as an MCP server and a CLI app. Use when the user wants to wrap a REST/HTTP API or service (Gmail, a CRM, an internal API…) as a connector or MCP tool for AgentRQ Connectors, scaffold a connector crate, implement its tools, test it on the host, build the .wasm, or install and try it with `connectors install`. Also use to decide between writing a component and installing an existing remote MCP server by URL."
 argument-hint: "[service] [what it should do]"
 ---
 
