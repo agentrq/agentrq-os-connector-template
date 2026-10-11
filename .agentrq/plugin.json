@@ -1,0 +1,38 @@
+{
+  "name": "agentrq-connector-skills",
+  "description": "Skills for building AgentRQ connectors: scaffold, author, and validate wasm32-wasip2 connectors with connectors-sdk, plus the manifest reference and MCP compatibility notes",
+  "version": "0.1.0",
+  "author": {
+    "name": "AgentRQ OS"
+  },
+  "homepage": "https://github.com/agentrq/agentrq-os-connector-template",
+  "repository": "https://github.com/agentrq/agentrq-os-connector-template",
+  "license": "Apache-2.0",
+  "keywords": [
+    "skills",
+    "agentrq",
+    "connectors",
+    "mcp",
+    "wasm"
+  ],
+  "capabilities": {
+    "skills": [
+      {
+        "id": "build-connector",
+        "path": "skills/build-connector/SKILL.md"
+      },
+      {
+        "id": "connector-authoring",
+        "path": "skills/connector-authoring/SKILL.md"
+      },
+      {
+        "id": "connector-manifest",
+        "path": "skills/connector-manifest/SKILL.md"
+      },
+      {
+        "id": "mcp-compatibility",
+        "path": "skills/mcp-compatibility/SKILL.md"
+      }
+    ]
+  }
+}

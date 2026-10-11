@@ -28,6 +28,8 @@ every push and pull request.
 │   ├── connector-authoring/     # end-to-end authoring guide
 │   ├── connector-manifest/      # complete manifest.json reference
 │   └── mcp-compatibility/       # MCP revisions and pinned host behaviors
+├── .agentrq/                # AgentRQ plugin manifest (skill import)
+├── .muse-plugin/              # Muse plugin manifest + marketplace
 ├── .claude-plugin/            # Claude Code plugin manifest + marketplace
 ├── .cursor-plugin/            # Cursor plugin manifest
 ├── .codex-plugin/             # Codex plugin manifest
@@ -57,8 +59,11 @@ every push and pull request.
 This template bundles four skills from `agentrq/connectors`, in the
 [Agent Skills](https://agentskills.io/specification) open standard so every
 major coding agent can use them. The skills live in `skills/` at the repo
-root; thin plugin manifests wire them into specific harnesses
-(`.claude-plugin`, `.cursor-plugin`, `.codex-plugin`).
+root; thin plugin manifests wire them into specific harnesses:
+`.agentrq/plugin.json` (AgentRQ skill import), `.muse-plugin` (Muse),
+`.claude-plugin` (Claude Code), `.cursor-plugin` (Cursor), `.codex-plugin`
+(Codex). To use them in AgentRQ, paste the repository URL on the Skills page
+and choose Import.
 
 - **`build-connector`** — plan the tool surface, scaffold the crate from the
   `minimal`, `api-key` or `oauth2` templates, implement tools against
