@@ -27,7 +27,7 @@ Go through every line before calling a connector done. The
 
 ## Tests and build
 
-- [ ] `cargo test` passes on the host and covers each tool's planned request, bad input, an unknown tool, and the response mapping for 2xx, an error status and a non-JSON body.
+- [ ] `cargo test` passes with 100% line and function coverage (`cargo llvm-cov --fail-under-lines 100 --fail-under-functions 100`): each tool's planned request, bad input, an unknown tool, and the response mapping for 2xx, an error status and a non-JSON body.
 - [ ] `cargo build --release --target wasm32-wasip2` succeeds.
 - [ ] `connectors install <wasm>` succeeds, and `connectors <name> tools <tool> help` reads well.
 - [ ] If the user signed in: one real read-only call returns what it should.

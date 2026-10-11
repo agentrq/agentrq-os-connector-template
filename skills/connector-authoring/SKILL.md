@@ -14,7 +14,9 @@ For complete, working connectors see the built-in
 [apps/basic-finance](../apps/basic-finance), [apps/math](../apps/math) and
 [apps/time](../apps/time), which have no network, many tools and a resource, and
 [examples/httpbin](../examples/httpbin), which makes outbound HTTP with an
-injected API key. Every manifest field is
+injected API key. For production-grade, published connectors, see
+[agentrq-os-connectors](https://github.com/agentrq/agentrq-os-connectors).
+Every manifest field is
 described in the `connector-manifest` skill.
 
 No Rust toolchain at hand? The built-in `wasmrs` connector writes and
@@ -331,7 +333,10 @@ Skills fetched from the service on demand implement `list_skills`,
 ## 5. Test on the host
 
 Everything except the export glue builds for the host, so plain `cargo test`
-exercises your logic. `host::config` returns `None` there, and `host::log`
+exercises your logic. Aim for 100% line and function coverage
+(`cargo llvm-cov --fail-under-lines 100 --fail-under-functions 100`): test
+every tool, every input validation, and every error branch. `host::config`
+returns `None` there, and `host::log`
 writes to stderr. Keep HTTP behind a function that builds the `Request`, as
 `examples/httpbin` does, and test that function:
 

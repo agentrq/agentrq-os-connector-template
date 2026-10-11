@@ -136,7 +136,9 @@ and prints the component path: `target/wasm32-wasip2/release/<name with _>.wasm`
 
 Write tests for each tool's planned request (URL, method, body), for bad
 input (`InvalidInput`), for an unknown tool (`NotFound`), and for `answer` on
-2xx, 4xx and a non-JSON body. See `references/testing.md`. If the manifest
+2xx, 4xx and a non-JSON body. See `references/testing.md`. Aim for 100% line
+and function coverage — `cargo llvm-cov --fail-under-lines 100
+--fail-under-functions 100` — so every branch is exercised. If the manifest
 breaks a rule, the build fails listing every violation with its JSON Pointer;
 fix them all, then rebuild.
 
@@ -164,5 +166,6 @@ Over MCP, run `connectors serve` and call `callTool` with
 ## 7. Before you call it done
 
 Go through `references/checklist.md`, or delegate a review to the
-`connector-reviewer` agent. Then offer to publish it (the `publish-connector`
-skill).
+`connector-reviewer` agent. For production-grade reference implementations,
+see [agentrq-os-connectors](https://github.com/agentrq/agentrq-os-connectors).
+Then offer to publish it (the `publish-connector` skill).

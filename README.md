@@ -162,6 +162,9 @@ is a complete, listing-valid connector you can copy as a starting point:
 
 All seven crates are dependency-free and covered at 100% lines and functions.
 
+For production-grade connectors built on these conventions, see
+[agentrq-os-connectors](https://github.com/agentrq/agentrq-os-connectors).
+
 ## Adding another connector
 
 1. Copy `my-connector/` to a new folder, e.g. `my-other-connector/`, and edit
