@@ -66,6 +66,8 @@ each with a JSON Pointer and a rule code.
 
 ## A complete example
 
+Keys are written in alphanumeric order, at every level of the document:
+
 ```json manifest
 {
   "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
@@ -726,14 +728,16 @@ A repository that publishes several connectors **must** have a
 `<name>.wasm` after the connector's `name`. Without the index, a release with
 more than one `.wasm` asset cannot be installed. The formal definition is
 [schemas/connectors-manifest.schema.json](../schemas/connectors-manifest.schema.json).
+The index's `connectors` array lists the manifests in alphanumeric order by
+path, and keys are in alphanumeric order here too.
 
 ```json connectors-manifest
 {
   "$schema": "https://connectors.agentrq.com/schemas/connectors-manifest/v1.json",
   "manifestVersion": 1,
   "connectors": [
-    { "manifest": "connectors/gmail/manifest.json" },
-    { "manifest": "connectors/drive/manifest.json" }
+    { "manifest": "connectors/drive/manifest.json" },
+    { "manifest": "connectors/gmail/manifest.json" }
   ],
   "bundles": [
     {
@@ -741,7 +745,7 @@ more than one `.wasm` asset cannot be installed. The formal definition is
       "title": "Google Workspace",
       "description": "Mail and files in one go",
       "icons": [{ "src": "data:image/svg+xml;base64,PHN2Zy8+" }],
-      "connectors": ["gmail", "drive"]
+      "connectors": ["drive", "gmail"]
     }
   ]
 }
