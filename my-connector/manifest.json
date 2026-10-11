@@ -1,0 +1,32 @@
+{
+  "$schema": "https://connectors.agentrq.com/schemas/manifest/v1.json",
+  "description": "What this connector does, in one or two sentences. This is what people read in the catalogue, so say what service it talks to and what it can do.",
+  "icons": [
+    {
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ],
+      "src": "https://raw.githubusercontent.com/<owner>/<repo>/main/my-connector/icon.svg"
+    }
+  ],
+  "instructions": "Guidance for the model using this connector: when to call it, how its tools fit together, and any conventions it follows (for example how it names parameters or what a call returns). Two to four sentences are usually enough.",
+  "manifestVersion": 1,
+  "mcpVersion": "2026-07-28",
+  "name": "my-connector",
+  "title": "My Connector",
+  "tools": [
+    {
+      "description": "What the tool does.",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {},
+        "type": "object"
+      },
+      "name": "exampleTool",
+      "title": "Example tool"
+    }
+  ],
+  "version": "0.1.0",
+  "websiteUrl": "https://example.com/docs"
+}

@@ -1,0 +1,32 @@
+name: tests
+
+# Rust quality gates, on every push and pull request:
+# - cargo fmt --check is clean
+# - cargo clippy --all-targets with zero warnings
+# - cargo test passes
+# - 100% line and function coverage (cargo llvm-cov)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  rust:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy, llvm-tools-preview
+      - name: Install cargo-llvm-cov
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-llvm-cov
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      - name: Clippy (zero warnings)
+        run: cargo clippy --all-targets -- -D warnings
+      - name: Tests
+        run: cargo test --all-targets
+      - name: Coverage (100% lines and functions)
+        run: cargo llvm-cov --fail-under-lines 100 --fail-under-functions 100

@@ -1,0 +1,12 @@
+[package]
+name = "my-connector"
+version = "0.1.0"
+edition = "2021"
+description = "Starter template for an AgentRQ connector."
+license = "Apache-2.0"
+repository = "https://github.com/agentrq/agentrq-os-connectors-template"
+rust-version = "1.80"
+
+[lib]
+name = "my_connector"
+path = "src/lib.rs"

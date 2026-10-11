@@ -1,0 +1,21 @@
+name: connector lint
+
+# Every push and pull request is checked against the catalogue listing rules:
+# a connector is listed only if its manifest.json carries manifestVersion 1,
+# mcpVersion, a valid connector name, version, description, icons and
+# instructions. The check is dependency-free (node only, no npm install).
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+      - name: Lint connector manifests
+        run: node scripts/lint.mjs
