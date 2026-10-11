@@ -1,3 +1,8 @@
+---
+name: connector-manifest
+description: The complete connector manifest.json reference: every top-level field, tools, auth, inputs, permissions, limits, icons, and the listing requirements (icons and instructions are mandatory). Use when writing, editing, or validating a manifest.json.
+---
+
 # Manifest reference
 
 Every connector carries a `manifest.json`. The `manifest!` macro embeds it in

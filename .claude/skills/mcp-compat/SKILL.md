@@ -1,3 +1,8 @@
+---
+name: mcp-compat
+description: MCP compatibility of the AgentRQ connectors host: the MCP revisions served (2026-07-28 and 2025-11-25), how a request's revision is chosen, and pinned behaviors. Use when checking what MCP surface a connector can rely on.
+---
+
 # MCP compatibility
 
 `connectors serve` serves the two latest MCP revisions, **2026-07-28** and
@@ -208,7 +213,7 @@ OAuth clients and inputs every profile shares go to the owner's token alone.
 
 ## Remote MCP servers
 
-A [remote connector](manifest.md#remote-mcp-servers) makes the host an MCP
+A remote connector (see the `connector-manifest` skill) makes the host an MCP
 **client** of another server. Its requests go through the same egress as a
 component's, so they carry the stored credential of the call's profile,
 refreshed when it expires and once more after a 401.
@@ -238,7 +243,7 @@ refreshed when it expires and once more after a 401.
   error `-32602` is reported as invalid input, `-32601` and `-32002` as not
   found, and others as upstream errors. A 401 says to sign in again.
 - **Authorization** discovery is described in
-  [manifest.md](manifest.md#remote-mcp-servers). Sign-ins send the RFC 8707
+  the `connector-manifest` skill. Sign-ins send the RFC 8707
   `resource`, and a client is registered (RFC 7591) when the server allows it
   and none is configured. The registered client remembers its redirect URIs;
   the CLI listens on the loopback port it was registered with when it is

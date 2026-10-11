@@ -1,3 +1,8 @@
+---
+name: connector-authoring
+description: Write an AgentRQ connector end to end: plan the tool surface, scaffold the Rust crate, implement tools with connectors-sdk, build the wasm32-wasip2 component, install and test it on the host. Use when creating a new connector or working through the full authoring flow.
+---
+
 # Writing a connector
 
 A connector is a WebAssembly component built for `wasm32-wasip2` with the
@@ -10,7 +15,7 @@ For complete, working connectors see the built-in
 [apps/time](../apps/time), which have no network, many tools and a resource, and
 [examples/httpbin](../examples/httpbin), which makes outbound HTTP with an
 injected API key. Every manifest field is
-described in [manifest.md](manifest.md).
+described in the `connector-manifest` skill.
 
 No Rust toolchain at hand? The built-in `wasmrs` connector writes and
 builds a connector on the host for a model: `wasmrs.tools newProject`,
@@ -126,7 +131,7 @@ The fields that matter most:
   never sees it.
 - **`permissions.http.allow`** lists the only origins your code may call.
 - Tool names are camelCase and must not be one of the
-  [reserved names](manifest.md#reserved-names) (`auth`, `help`, `search`,
+  `reserved names` (see the `connector-manifest` skill) (`auth`, `help`, `search`,
   `searchTools`, `tools`, `resources`, `prompts`).
 
 ## 4. Implement the connector
@@ -453,7 +458,7 @@ results. Start one from the `workflow` template (`wasmrs newProject
 {"template": "workflow"}`, or copy `templates/workflow`).
 
 The manifest has a `workflow` block instead of `tools` (see
-[Workflows](manifest.md#workflows)): the `start` step and, for each step, the
+the `Workflows` section of the `connector-manifest` skill: the `start` step and, for each step, the
 steps its ok path and its error path may lead to. `manifest!` checks the
 graph when the crate compiles.
 

@@ -17,8 +17,11 @@ every push and pull request.
 │   ├── Cargo.toml
 │   └── src/lib.rs             # example implementation + tests
 ├── scripts/lint.mjs           # the listing-rules linter (dependency-free)
-├── .claude/skills/build-connector/  # the connector builder skill (from agentrq/connectors):
-│   │                          # scaffolding, SDK reference, checklists and templates
+├── .claude/skills/              # skills, auto-discovered by Claude Code:
+│   ├── build-connector/         # scaffold, build, test and publish a connector
+│   ├── connector-authoring/     # end-to-end authoring guide
+│   ├── connector-manifest/      # complete manifest.json reference
+│   └── mcp-compat/              # MCP revisions and pinned host behaviors
 └── .github/workflows/
     ├── lint.yml               # connector lint, on push and PR
     └── test.yml               # fmt, clippy, tests, 100% coverage
@@ -42,25 +45,23 @@ every push and pull request.
 
 ## Building the connector
 
-The [build-connector skill](.claude/skills/build-connector/SKILL.md) — copied
-from `agentrq/connectors` — is bundled with this template and is picked up
-automatically by Claude Code. It walks through planning the tool surface,
-scaffolding the crate from the `minimal`, `api-key` or `oauth2` templates,
-implementing tools against `connectors-sdk`, and testing on the host before
-building the `.wasm`. The skill's checklists encode the same quality bar the
-workflows enforce: `icons` and `instructions` in every manifest, `cargo fmt`
-clean, clippy with zero warnings, and 100% line and function coverage.
+This template bundles four skills from `agentrq/connectors`, picked up
+automatically by Claude Code:
 
-## Reference docs
+- **`build-connector`** — plan the tool surface, scaffold the crate from the
+  `minimal`, `api-key` or `oauth2` templates, implement tools against
+  `connectors-sdk`, and test on the host before building the `.wasm`.
+- **`connector-authoring`** — the end-to-end authoring guide: scaffolding,
+  tools, auth, building, installing and testing.
+- **`connector-manifest`** — the complete `manifest.json` field reference,
+  including the listing requirements (`icons` and `instructions` are
+  mandatory to be listed).
+- **`mcp-compat`** — which MCP revisions the host serves and how a request's
+  revision is chosen.
 
-Copies from `agentrq/connectors`, kept alongside the skill:
-
-- [docs/authoring.md](docs/authoring.md) — writing a connector end to end:
-  scaffolding, tools, auth, building the `.wasm`, installing and testing.
-- [docs/manifest.md](docs/manifest.md) — the complete `manifest.json` field
-  reference.
-- [docs/mcp-compat.md](docs/mcp-compat.md) — which MCP revisions the host
-  serves and how.
+The skills' checklists encode the same quality bar the workflows enforce:
+`icons` and `instructions` in every manifest, `cargo fmt` clean, clippy with
+zero warnings, and 100% line and function coverage.
 
 ## Adding another connector
 
