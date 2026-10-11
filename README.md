@@ -80,6 +80,66 @@ The skills' checklists encode the same quality bar the workflows enforce:
 `icons` and `instructions` in every manifest, `cargo fmt` clean, clippy with
 zero warnings, and 100% line and function coverage.
 
+### Adding the skills to your agent
+
+<details>
+<summary>AgentRQ</summary>
+
+On the **Skills** page (or a workspace's **Settings → Skills**), paste
+`https://github.com/agentrq/agentrq-os-connector-template`, tick the
+workspaces to turn the skills on in, and choose **Import**. The
+`.agentrq/plugin.json` manifest declares the four skills.
+</details>
+
+<details>
+<summary>Claude Code</summary>
+
+```text
+/plugin marketplace add agentrq/agentrq-os-connector-template
+/plugin install agentrq-connector-skills@agentrq
+```
+</details>
+
+<details>
+<summary>Muse</summary>
+
+```bash
+git clone https://github.com/agentrq/agentrq-os-connector-template.git
+muse plugins install ./agentrq-os-connector-template
+muse plugins approve agentrq-connector-skills
+```
+</details>
+
+<details>
+<summary>Cursor</summary>
+
+Copy the skill folders into `~/.cursor/skills/` (all your projects) or your
+project's `.cursor/skills/`:
+
+```bash
+git clone https://github.com/agentrq/agentrq-os-connector-template.git
+cp -r agentrq-os-connector-template/skills/* ~/.cursor/skills/
+```
+</details>
+
+<details>
+<summary>Codex</summary>
+
+```bash
+git clone https://github.com/agentrq/agentrq-os-connector-template.git
+mkdir -p ~/.codex/skills
+cp -r agentrq-os-connector-template/skills/* ~/.codex/skills/
+```
+</details>
+
+<details>
+<summary>Any other agent</summary>
+
+The `skills/` folder follows the
+[Agent Skills](https://agentskills.io/specification) open standard: copy the
+skill folders into your agent's skills directory.
+</details>
+
 ## Examples
 
 Beyond the `my-connector` starter, the repo ships six focused examples. Each
