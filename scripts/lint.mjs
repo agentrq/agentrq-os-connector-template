@@ -3,9 +3,11 @@
 // A connector is listed only if its manifest.json carries every listing field:
 // manifestVersion 1, mcpVersion, a valid connector name, version, a non-empty
 // description, a non-empty icons array, and a non-empty instructions string.
-// A repository publishing several connectors lists them in
-// connectors-manifest.json instead; each listed manifest is checked the same
-// way. Dependency-free: node only, no npm install.
+// Manifest keys are written in alphanumeric order, at every level of the
+// document. A repository publishing several connectors lists them in
+// connectors-manifest.json instead, in alphanumeric order by manifest path;
+// each listed manifest is checked the same way.
+// Dependency-free: node only, no npm install.
 //
 // Usage: node scripts/lint.mjs   (run from the repository root)
 
@@ -68,6 +70,23 @@ function checkIcons(doc, where) {
       fail(at, '"sizes" must be a non-empty array of strings, e.g. ["any"]')
     }
   })
+}
+
+/** Every object's keys must be in alphanumeric order (code-point comparison). */
+function checkKeyOrder(value, where) {
+  if (Array.isArray(value)) {
+    value.forEach((item, i) => checkKeyOrder(item, `${where}[${i}]`))
+    return
+  }
+  if (!isPlainObject(value)) return
+  const keys = Object.keys(value)
+  for (let i = 1; i < keys.length; i++) {
+    if (keys[i - 1] > keys[i]) {
+      fail(where, `keys must be in alphanumeric order: "${keys[i]}" should come before "${keys[i - 1]}"`)
+      break
+    }
+  }
+  for (const key of keys) checkKeyOrder(value[key], `${where}.${key}`)
 }
 
 function checkManifest(doc, where) {
@@ -147,6 +166,16 @@ function main() {
           }
           paths.push(path)
         })
+        const ordered = [...paths].sort()
+        for (let i = 0; i < paths.length; i++) {
+          if (paths[i] !== ordered[i]) {
+            fail(
+              INDEX_FILE,
+              `"connectors" must list manifests in alphanumeric order: "${ordered[i]}" sorts before "${paths[i]}"`,
+            )
+            break
+          }
+        }
         if (paths.length > 0) manifestPaths = paths
       }
     }
@@ -160,6 +189,7 @@ function main() {
       continue
     }
     checkManifest(read.doc, path)
+    checkKeyOrder(read.doc, path)
   }
 
   if (errors.length > 0) {

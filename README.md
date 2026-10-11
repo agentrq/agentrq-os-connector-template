@@ -216,9 +216,10 @@ publishes:
 (A repository publishing a single connector may instead keep its
 `manifest.json` at the root with no index; the lint script handles both.)
 When the index exists, the lint script validates the index itself (valid JSON,
-`manifestVersion` 1, sane and unique `manifest` paths) and then applies the
-listing rules to **every** manifest it points at, reporting per-connector
-pass/fail with the connector name and the exact rule violated.
+`manifestVersion` 1, sane and unique `manifest` paths, listed in alphanumeric
+order) and then applies the listing rules to **every** manifest it points at,
+reporting per-connector pass/fail with the connector name and the exact rule
+violated. Manifest keys must be in alphanumeric order at every level.
 
 ## Quality bar
 
